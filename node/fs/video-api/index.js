@@ -9,6 +9,7 @@ const {
   close,
   read,
   write,
+  fstat,
 } = require("fs");
 const path = require("path");
 
@@ -73,12 +74,43 @@ const filePath = path.resolve("./data.txt");
 // });
 
 // 8. write写入文件
-open(filePath, "w", (err, fd) => {
-  if (err) {
-    throw err;
-  }
-  const buf = Buffer.from("要下班了");
-  write(fd, buf, 0, buf.length, 0, (err, writeBytes, data) => {
-    console.log(writeBytes, data.toString());
+// open(filePath, "w", (err, fd) => {
+//   if (err) {
+//     throw err;
+//   }
+//   const buf = Buffer.from("要下班了");
+//   write(fd, buf, 0, buf.length, 0, (err, writeBytes, data) => {
+//     console.log(writeBytes, data.toString());
+//   });
+// });
+
+// 9. copy文件
+// 1. 把大文件都读取出来
+
+const writeFilePath = path.resolve("./dest1.txt");
+const LENGTH = 1024;
+let readOffset = 0;
+const buf = Buffer.alloc(LENGTH);
+open(filePath, "r", (err, rfd) => {
+  open(writeFilePath, "w", (err, wfd) => {
+    (function next() {
+      read(rfd, buf, 0, LENGTH, readOffset, (err, bytesRead, buffer) => {
+        if (!bytesRead) {
+          close(rfd, () => {});
+          close(wfd, () => {
+            console.log(`拷贝完成`);
+          });
+          return;
+        }
+        readOffset = readOffset + bytesRead;
+        write(wfd, buffer, 0, bytesRead, (err, written, writeBuf) => {
+          next();
+        });
+        // 也可以，用偏移量
+        // write(wfd, buffer, 0, bytesRead, readOffset - bytesRead, (err, written, writeBuf) => {
+        //   next();
+        // });
+      });
+    })();
   });
 });
