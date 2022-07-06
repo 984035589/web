@@ -68,6 +68,18 @@ class MyReadStream extends EventEmitter {
       this.emit("close");
     });
   }
+
+  pipe(cw) {
+    this.on("data", (data) => {
+      const flags = cw.write(data);
+      if (!flags) {
+        this.pause();
+      }
+    });
+    cw.on("drain", () => {
+      this.resume();
+    });
+  }
 }
 
 const myReadStream = new MyReadStream("../test.txt", {
@@ -94,3 +106,5 @@ myReadStream.on("close", () => {
 myReadStream.on("end", () => {
   console.log("end");
 });
+
+module.exports = MyReadStream;
