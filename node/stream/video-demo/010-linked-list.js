@@ -96,10 +96,12 @@ class Queue {
   }
 }
 
-const queue = new Queue();
-queue.enQueue("1");
-queue.enQueue("2");
-console.log(queue.deQueue());
-console.log(queue.deQueue());
-console.log(queue.deQueue());
+module.exports = Queue;
+
+// const queue = new Queue();
+// queue.enQueue("1");
+// queue.enQueue("2");
+// console.log(queue.deQueue());
+// console.log(queue.deQueue());
+// console.log(queue.deQueue());
 // console.log(queue);
