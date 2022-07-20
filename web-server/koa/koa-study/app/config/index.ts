@@ -12,12 +12,18 @@ const config = {
 	log: {
 		appenders: {
 			cheese: { type: 'file', filename: 'logs/cheese.log' },
-			access: { type: 'file', filename: 'logs/access.log', pattern: 'yyyy-MM-dd', category: 'http' }
+			access: { type: 'file', filename: 'logs/access.log', pattern: 'yyyy-MM-dd', category: 'http' },
+			db: { type: 'file', filename: 'logs/db.log', pattern: 'yyyy-MM-dd' }
 		},
 		categories: {
 			default: { appenders: ['cheese'], level: 'info' },
-			access: { appenders: ['access'], level: 'info' }
+			access: { appenders: ['access'], level: 'info' },
+			db: { appenders: ['db'], level: 'info' }
 		}
+	},
+	jwt: {
+		jwt_secret: process.env.JWT_SECRET,
+		jwt_expire: process.env.JWT_EXPIRE
 	}
 };
 
