@@ -1,8 +1,17 @@
+import { PageQueryModel } from '../../types';
 import Admin from '../model/Admin';
 
 class AdminService {
-	getAdmin() {
-		return Admin.findOne();
+	getAdminById(id: number) {
+		return Admin.findByPk(id);
+	}
+
+	pageQuery(params: PageQueryModel) {
+		console.log(params);
+		return Admin.findAndCountAll({
+			limit: params.pageSize,
+			offset: (params.page - 1) * params.pageSize
+		});
 	}
 }
 
