@@ -12,4 +12,9 @@ interface PageResModel<T extends Model[]> extends PageBaseModel {
 
 interface PageQueryModel extends PageBaseModel {}
 
-export { PageResModel, PageQueryModel };
+interface LoginFormModel {
+	name: string;
+	password: string;
+}
+
+export { PageResModel, PageQueryModel, LoginFormModel };

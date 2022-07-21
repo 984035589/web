@@ -7,10 +7,17 @@ class AdminService {
 	}
 
 	pageQuery(params: PageQueryModel) {
-		console.log(params);
 		return Admin.findAndCountAll({
 			limit: params.pageSize,
 			offset: (params.page - 1) * params.pageSize
+		});
+	}
+
+	getAdminByName(name: string) {
+		return Admin.findOne({
+			where: {
+				name: name
+			}
 		});
 	}
 }
