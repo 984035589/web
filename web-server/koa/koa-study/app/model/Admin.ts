@@ -1,7 +1,11 @@
-import { Table, Model, Column } from 'sequelize-typescript';
+import { Table, Model, Column, NotNull } from 'sequelize-typescript';
+import moment from 'moment';
 
-@Table
+@Table({})
 export default class Admin extends Model {
-    @Column
-    name!: string
+	@Column
+	name: string = '';
+
+	@Column({})
+	password: string = '';
 }

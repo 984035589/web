@@ -1,5 +1,7 @@
 import { PageQueryModel } from '../../types';
+import setDataValue from '../../utils/setDataValue';
 import Admin from '../model/Admin';
+import Artical from '../model/Artical';
 
 class AdminService {
 	getAdminById(id: number) {
@@ -19,6 +21,20 @@ class AdminService {
 				name: name
 			}
 		});
+	}
+
+	addAdmin(data: any) {
+		const admin = Admin.build(data);
+		setDataValue(admin, data);
+		return admin.save();
+	}
+
+	deleteById(id: number) {
+		return Admin.destroy({ where: { id } });
+	}
+
+	updateById(id: number, data: any) {
+		return Admin.update(data, { where: { id } });
 	}
 }
 

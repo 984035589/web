@@ -1,6 +1,6 @@
 import { Context } from 'koa';
 
-function success(ctx: Context, data: {} = {}, msg: string = 'success', code: number = 0) {
+function success<T>(ctx: Context, data: T, msg: string = 'success', code: number = 0) {
 	ctx.body = {
 		data,
 		msg,

@@ -15,7 +15,7 @@ import AccessLogMiddleware from './middleware/AccessLogMiddleware';
 
 const app = new Koa();
 
-app.use(KoaStatic(path.join(__dirname, '../static')))
+app.use(KoaStatic(path.join(__dirname, '../static'), { gzip: true }))
 	.use(
 		koaBody({
 			multipart: true,
