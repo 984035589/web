@@ -5,17 +5,22 @@ import db from './db';
 db();
 
 import Koa from 'koa';
+import KoaSession from 'koa-session';
 import KoaStatic from 'koa-static';
 import koaBody from 'koa-body';
 import router from './router';
 import path from 'path';
+import sslify from 'koa-sslify';
 
 import { Server } from 'http';
 import AccessLogMiddleware from './middleware/AccessLogMiddleware';
 
 const app = new Koa();
 
-app.use(KoaStatic(path.join(__dirname, '../static'), { gzip: true }))
+app.keys = ['SECRET'];
+//
+app.use(sslify())
+	.use(KoaStatic(path.join(__dirname, '../static'), { gzip: true }))
 	.use(
 		koaBody({
 			multipart: true,

@@ -24,6 +24,18 @@ const config = {
 	jwt: {
 		jwt_secret: process.env.JWT_SECRET,
 		jwt_expire: process.env.JWT_EXPIRE
+	},
+	session: {
+		key: 'KOA',
+		maxAge: 86400000,
+		autoCommit: true,
+		overwrite: true,
+		httpOnly: true,
+		signed: true,
+		rolling: false,
+		renew: false,
+		secure: true,
+		sameSite: null
 	}
 };
 
