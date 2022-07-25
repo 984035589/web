@@ -36,6 +36,9 @@ const config = {
 		renew: false,
 		secure: true,
 		sameSite: null
+	},
+	domain: {
+		name: process.env.DOMAIN_NAME
 	}
 };
 

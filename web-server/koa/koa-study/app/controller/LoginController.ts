@@ -20,7 +20,7 @@ class LoginCOntroller {
 			return;
 		}
 		const token = sign(admin);
-		(ctx.session as unknown as any).userinfo = '张三';
+		(ctx.session as unknown as any).userinfo = res.data.name;
 		response.success(ctx, { token });
 	}
 }
