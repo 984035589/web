@@ -2,6 +2,7 @@ import { Sequelize } from 'sequelize-typescript';
 import config from '../config';
 import path from 'path';
 import { dbLogger } from '../logger';
+import Admin from '../model/Admin';
 
 const sequelize = new Sequelize(config.db.db_name as string, config.db.db_user as string, config.db.db_password, {
 	port: config.db.db_port as unknown as number,
@@ -18,6 +19,8 @@ const sequelize = new Sequelize(config.db.db_name as string, config.db.db_user a
 	models: [path.join(__dirname, '../model/**/*.ts'), path.join(__dirname, '../model/**/*.js')],
 	timezone: '+08:00'
 });
+
+sequelize.addModels([Admin]);
 
 const db = async () => {
 	try {
