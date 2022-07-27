@@ -1,5 +1,5 @@
 import { PageQueryModel } from '../../types';
-import setDataValue from '../../utils/setDataValue';
+// import setDataValue from '../../utils/setDataValue';
 import Admin from '../model/Admin';
 
 class AdminService {
@@ -23,9 +23,12 @@ class AdminService {
 	}
 
 	addAdmin(data: any) {
-		const admin = Admin.build(data);
-		setDataValue(admin, data);
-		return admin.save();
+		console.log(`----------------------`);
+		console.log(data);
+		// const admin = Admin.build(data);
+		// setDataValue(admin, data);
+		// return admin.save();
+		return Admin.create(data);
 	}
 
 	deleteById(id: number) {
