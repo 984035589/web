@@ -9,9 +9,13 @@ import router from './router';
 import AccessLogMiddleware, { ErrorLogMiddleware, NotFoundLogMiddleware } from './middleware/LogMiddleware';
 import morgan from 'morgan';
 import responseTime from 'response-time';
-// import formidable from 'express-formidable';
+import art from '../views';
+import path from 'path';
 
 const app = express();
+
+art(app);
+app.use('/static', express.static(path.join(__dirname, '../public/')));
 
 app.use(
 	responseTime((req, res: Response, time) => {
