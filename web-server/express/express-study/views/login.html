@@ -22,17 +22,22 @@
 					<li>That email is already taken</li>
 				</ul>
 
-				<form>
+				<form @submit.prevent="submit">
 					{{if !isLogin}}
 					<fieldset class="form-group">
 						<input class="form-control form-control-lg" type="text" placeholder="Your Name" />
 					</fieldset>
 					{{/if}}
 					<fieldset class="form-group">
-						<input class="form-control form-control-lg" type="text" placeholder="Email" />
+						<input class="form-control form-control-lg" type="text" placeholder="Email" v-model="email" />
 					</fieldset>
 					<fieldset class="form-group">
-						<input class="form-control form-control-lg" type="password" placeholder="Password" />
+						<input
+							class="form-control form-control-lg"
+							type="password"
+							placeholder="Password"
+							v-model="password"
+						/>
 					</fieldset>
 					<button class="btn btn-lg btn-primary pull-xs-right">{{isLogin? 'Sign in':'Sign up'}}</button>
 				</form>
@@ -49,11 +54,16 @@
 			},
 			setup() {
 				return {
-					name: '泪眼问花花不语，乱红飞过秋千去'
+					email: '',
+					password: '',
+					submit: () => {
+						axios.post('/api/login', { name: app.email, password: app.password }).then(() => {
+							location.href = '/';
+						});
+					}
 				};
 			}
 		}).mount('#login');
-		console.log(app);
 	})();
 </script>
 {{/block}}

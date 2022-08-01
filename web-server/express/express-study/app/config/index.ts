@@ -26,16 +26,9 @@ const config = {
 		jwt_expire: process.env.JWT_EXPIRE
 	},
 	session: {
-		key: 'KOA',
-		maxAge: 86400000,
-		autoCommit: true,
-		overwrite: true,
-		httpOnly: true,
-		signed: true,
-		rolling: false,
-		renew: false,
-		secure: true,
-		sameSite: null
+		secret: process.env.SESSION_SECRET,
+		name: process.env.SESSION_NAME,
+		maxAge: 30 * 24 * 60 * 60 * 1000
 	},
 	domain: {
 		name: process.env.DOMAIN_NAME
