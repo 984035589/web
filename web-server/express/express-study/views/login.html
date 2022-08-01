@@ -1,0 +1,59 @@
+{{extend './layout/index.html'}} {{block 'body'}} {{block 'head'}}
+<title>login</title>
+<meta name="description" content="login" />
+<meta name="keywords" content="express" />
+<style>
+	body {
+		background: aliceblue;
+	}
+</style>
+{{/block}}
+<div class="auth-page" id="login">
+	${name}
+	<div class="container page">
+		<div class="row">
+			<div class="col-md-6 offset-md-3 col-xs-12">
+				<h1 class="text-xs-center">{{isLogin? 'Sign in':'Sign up'}}</h1>
+				<p class="text-xs-center">
+					<a href="">Have an account?</a>
+				</p>
+
+				<ul class="error-messages">
+					<li>That email is already taken</li>
+				</ul>
+
+				<form>
+					{{if !isLogin}}
+					<fieldset class="form-group">
+						<input class="form-control form-control-lg" type="text" placeholder="Your Name" />
+					</fieldset>
+					{{/if}}
+					<fieldset class="form-group">
+						<input class="form-control form-control-lg" type="text" placeholder="Email" />
+					</fieldset>
+					<fieldset class="form-group">
+						<input class="form-control form-control-lg" type="password" placeholder="Password" />
+					</fieldset>
+					<button class="btn btn-lg btn-primary pull-xs-right">{{isLogin? 'Sign in':'Sign up'}}</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{{/block}} {{block 'script'}}
+<script>
+	(() => {
+		const app = Vue.createApp({
+			compilerOptions: {
+				delimiters: ['${', '}']
+			},
+			setup() {
+				return {
+					name: '泪眼问花花不语，乱红飞过秋千去'
+				};
+			}
+		}).mount('#login');
+		console.log(app);
+	})();
+</script>
+{{/block}}

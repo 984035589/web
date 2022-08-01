@@ -8,7 +8,9 @@ import { adminRules } from '../../common/validator-rules';
 
 const router = Router();
 
-router.get('/art', ViewController.index);
+router.get('/', ViewController.index);
+router.get('/login', ViewController.login);
+router.get('/register', ViewController.register);
 router.post('/login/:id', LoginController.index);
 
 router.use(AuthMiddleware);
