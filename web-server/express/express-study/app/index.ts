@@ -15,7 +15,7 @@ import path from 'path';
 const app = express();
 
 art(app);
-app.use('/static', express.static(path.join(__dirname, '../public/')));
+app.use('/static', [express.static(path.join(__dirname, '../public/')), express.static(path.join(__dirname, '../node_modules/vue/'))]);
 
 app.use(
 	responseTime((req, res: Response, time) => {
