@@ -18,6 +18,11 @@ class LoginController {
 		(req.session as any).user = req.body;
 		res.json(req.body);
 	}
+
+	async logout(req: Request, res: Response) {
+		(req.session as any).user = null;
+		response.success(res, 1);
+	}
 }
 
 export default new LoginController();

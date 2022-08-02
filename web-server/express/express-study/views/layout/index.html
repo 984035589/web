@@ -13,16 +13,14 @@
 		<!-- 头部 -->
 		{{block 'head'}}{{/block}}
 	</head>
-		
+		<script src="/static/dist/vue.global.js"></script>
+		<script src="/static/dist/axios.js"></script>
 		<!-- 头部 -->
 		{{include './header.html'}}
 		<!-- 内容 -->
 		{{block 'body'}}这是默认内容{{/block}}
 		<!-- 底部 -->
 		{{include './footer.html'}}
-
-		<script src="/static/dist/vue.global.js"></script>
-		<script src="/static/dist/axios.js"></script>
 
 		<!-- 脚本 -->
 		{{block 'script'}}{{/block}}

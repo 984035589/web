@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light">
+<nav class="navbar navbar-light" id="header">
 	<div class="container">
 		<a class="navbar-brand" href="index.html">conduit</a>
 		<ul class="nav navbar-nav pull-xs-right">
@@ -12,12 +12,31 @@
 			<li class="nav-item">
 				<a class="nav-link" href=""> <i class="ion-gear-a"></i>&nbsp;Settings </a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="">Sign in</a>
+			<li class="nav-item" @click="logout">
+				<a class="nav-link" href="javascript:;">Logout</a>
 			</li>
-			<li class="nav-item">
+			<!-- <li class="nav-item">
 				<a class="nav-link" href="">Sign up</a>
-			</li>
+			</li> -->
 		</ul>
 	</div>
 </nav>
+
+<script>
+	(() => {
+		const app = Vue.createApp({
+			compilerOptions: {
+				delimiters: ['${', '}']
+			},
+			setup() {
+				return {
+					logout: () => {
+						axios.get('/api/logout').then(() => {
+							location.href = '/login';
+						});
+					}
+				};
+			}
+		}).mount('#header');
+	})();
+</script>

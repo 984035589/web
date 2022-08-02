@@ -16,15 +16,17 @@ import config from './config';
 import { createClient } from 'redis';
 
 const RedisStore = require('connect-redis')(session);
-let redisClient = createClient({ url: 'redis://@124.220.180.249:6379' });
-redisClient.connect().catch(console.error);
+let redisClient = createClient({ url: 'redis://124.220.180.249:6379', legacyMode: true });
+redisClient
+	.connect()
+	.catch(console.error);
 
 const app = express();
 
 app.use(
 	session({
 		secret: config.session.secret as string,
-		resave: false,
+		resave: true, //false,
 		saveUninitialized: true,
 		cookie: {
 			// secure: true
