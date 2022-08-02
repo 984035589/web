@@ -11,7 +11,7 @@ const router = Router();
 router.get('/', ViewController.index);
 router.get('/login', ViewController.login);
 router.get('/register', ViewController.register);
-router.post('/login/:id', LoginController.index);
+router.post('/api/login', ValidateMiddleware(adminRules), LoginController.index);
 
 router.use(AuthMiddleware);
 router.post('/admin', ValidateMiddleware(adminRules), AdminController.addAdmin);

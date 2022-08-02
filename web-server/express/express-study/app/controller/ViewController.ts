@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 
 class ViewController {
 	index(req: Request, res: Response) {
+		console.log(`---------`);
+		console.log(req.session);
 		res.render('index', {
 			user: {
 				name: 'art',
